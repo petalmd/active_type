@@ -25,6 +25,22 @@ module ActiveType
         default.respond_to?(:call) ? object.instance_eval(&default) : default
       end
 
+      def type
+        @type_caster.type
+      end
+
+      def klass
+        case type
+        when :integer                     then Fixnum
+        when :float                       then Float
+        when :decimal                     then BigDecimal
+        when :datetime, :timestamp, :time then Time
+        when :date                        then Date
+        when :text, :string, :binary      then String
+        when :boolean                     then Object
+        end
+      end
+
     end
 
     class Builder

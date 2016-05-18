@@ -10,6 +10,10 @@ module ActiveType
     include VirtualAttributes
     include NestedAttributes
 
+    def type_for_attribute(attribute)
+      virtual_columns_hash[attribute]
+    end
+
   end
 
 end

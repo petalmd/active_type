@@ -1,6 +1,8 @@
 module ActiveType
   class TypeCaster
 
+    attr_reader :type
+
     def self.get(type, connection)
       native_caster = if ActiveRecord::VERSION::STRING < '4.2'
         NativeCasters::DelegateToColumn.new(type)
